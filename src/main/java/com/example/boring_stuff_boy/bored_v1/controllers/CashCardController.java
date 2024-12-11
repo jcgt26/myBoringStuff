@@ -1,6 +1,6 @@
-package com.example.boring_stuff_boy.cashcard.controllers;
+package com.example.boring_stuff_boy.bored_v1.controllers;
 
-import com.example.boring_stuff_boy.cashcard.CashCard;
+import com.example.boring_stuff_boy.bored_v1.CashCard;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
