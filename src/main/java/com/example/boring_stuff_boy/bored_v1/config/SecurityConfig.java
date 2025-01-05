@@ -7,6 +7,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,10 +23,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login")
-                .permitAll()
-                .anyRequest()
-                .authenticated());
+                    .requestMatchers("/api/v1/auth/test","/api/v1/auth/register", "/test")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()).csrf(CsrfConfigurer::disable);
 
         return http.build();
     }
@@ -40,17 +41,6 @@ public class SecurityConfig {
 
         return new ProviderManager(authenticationProvider);
     }
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests(authorize -> authorize
-//                        .anyRequest().authenticated()) // maybe just start with the cashcards??
-//                        .httpBasic(Customizer.withDefaults())
-//                        .csrf(csrf -> csrf.disable()) // disable csrf for now
-//                        .formLogin(Customizer.withDefaults());
-//
-//        return http.build();
-//    }
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {

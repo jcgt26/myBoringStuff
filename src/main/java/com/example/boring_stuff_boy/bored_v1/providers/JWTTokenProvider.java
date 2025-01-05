@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
+//@Component
 public class JWTTokenProvider {
 
-    @Value("${app.jwtSecret}")
+    //@Value("${app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${app.jwtExpirationInMS}")
+    //@Value("${app.jwtExpirationInMS}")
     private long jwtExpirationInMS;
     public String generateToken(Authentication authentication) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();

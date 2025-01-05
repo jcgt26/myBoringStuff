@@ -1,0 +1,17 @@
+version: '1.0'
+services:
+  postgres:
+      image: postgres:latest
+      container_name: my_boring_stuff_db
+      restart: always # if there is an error automatically restart
+      ports:
+          - 5432:5432 # Host:Container
+      environment:
+          POSTGRES_USER: happy-tree
+          POSTGRES_PASSWORD: password_123
+          POSTGRES_DB: my_boring_stuff_db
+      volumes:
+          - postgres_myboringstuff:/var/lib/postgressql/data
+volumes:
+  postgres_myboringstuff:
+    external: true
