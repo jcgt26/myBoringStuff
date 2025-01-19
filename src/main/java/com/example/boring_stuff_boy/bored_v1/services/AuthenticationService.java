@@ -1,6 +1,7 @@
 package com.example.boring_stuff_boy.bored_v1.services;
 
 import com.example.boring_stuff_boy.bored_v1.entities.User;
+import com.example.boring_stuff_boy.bored_v1.exceptions.UserCreationException;
 import com.example.boring_stuff_boy.bored_v1.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +20,7 @@ public class AuthenticationService {
     /*
      * Register a new User
      */
-    public User registerUser(User user) {
+    public User registerUser(User user) throws UserCreationException {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return this.userService.createNewUser(user);
